@@ -61,6 +61,7 @@ void printmst() {
 int main() {
     display();
     bubble();
+    printf("Sorted edges : \n");
     display();
     kruskal();
     printmst();

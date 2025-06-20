@@ -53,6 +53,7 @@ void kruskal() {
 }
 void printmst() {
     int weight = 0;
+    printf("Minimum Spanning Tree : \n");
     for(int i=0; i<k; i++) {
         printf("(%c-%c)->%d\n",mst[i][0]+65,mst[i][1]+65,mst[i][2]);
         weight = weight + mst[i][2];
@@ -66,15 +67,21 @@ void print_ip() {
         printf("File is empty");
     }
     fscanf(fp, "%d",&nov);
+    int first = 1;
     for(int i=0; i<nov; i++) {
         printf("The adjacent of the vertix %c is : ",i+65);
         for(int j=0; j<nov; j++) {
             fscanf(fp, "%d",&G[i][j]);
             if(G[i][j] != 0) {
-                printf("%c, ",j+65);
+                if(!first){
+                    printf(", ");
+                }
+                printf("%c",j+65);
+                first = 0;
             }
         }
         printf("\n");
+        first = 1;
     }
     printf("Adjacency Matrix:\n");
     for(int i=0; i<nov; i++) {

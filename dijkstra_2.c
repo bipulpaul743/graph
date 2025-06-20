@@ -45,17 +45,23 @@ void mstprint(int src){
     }
 }
 void adjacentprint(int src, int des)  {
-    int p[10], x, k=0;
+    int p[MAX], x, k=0;
     p[k] = des;
     x = des;
     while(x != src) {
+        if (parent[x] == -1) {
+            printf("No path from %c to %c\n", src + 65, des + 65);
+            return;
+        }
         p[++k] = parent[x];
         x = parent[x];
-        printf("%c\n",x+65);
+        //printf("%c\n",x+65);
     }
-    for(int i=k; i>=0; i--) {
+    printf("Path : ");
+    for(int i=k; i>0; i--) {
         printf("%c->",p[i]+65);
     }
+    printf("%c",p[0]+65);
     printf("\n");
 }
 void file() {
@@ -91,10 +97,12 @@ int main() {
     printf("Enter the starting vertex : ");
     scanf("%d",&src);
     dijkstra(src);
-    for(int i=1; i<nov; i++) {
-        printf("From %c to %c :\n",src+65,i+65);
-        adjacentprint(src, i);
-        printf("\n");
+    for(int i=0; i<nov; i++) {
+        if(i != src){
+            printf("From %c to %c :\n",src+65,i+65);
+            adjacentprint(src, i);
+            printf("\n");
+        }
     }
     mstprint(src);
 

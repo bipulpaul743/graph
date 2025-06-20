@@ -9,9 +9,13 @@ bool visit[MAX];
 int extractmin() {
     int min = INT_MAX, pos;
     for(int i=0; i<nov; i++) {
+        // printf("key[i] = %d, i = %d\n",key[i],i);
+        // printf("min = %d\n",min);
         if(key[i]<min && visit[i] == false) {
             min = key[i];
+            // printf("updated min = %d\n",min);
             pos = i;
+            // printf("pos = %d\n\n",pos);
         }
     }
     return pos;
@@ -28,10 +32,15 @@ void prims(int src) {
         visit[u] = true;
         printf("U = %d\n",u);
         for(int j=0; j<nov; j++) {
+            // printf("if w[u][j] = %d, u = %d, j = %d\n",w[u][j],u,j);
             if(w[u][j] != 0) {
+                // printf("if key[j] = %d, j = %d\n",key[j],j);
+                // printf("if w[u][j] = %d, u = %d, j = %d\n\n",w[u][j],u,j);
                 if(visit[j] == false && key[j] > w[u][j]) {
                     key[j] = w[u][j];
+                    // printf("updated key[j] = %d, j = %d\n",key[j],j);
                     parent[j] = u;
+                    // printf("updated parent[j] = %d, j = %d\n\n",parent[j],j);
                 }
             }
         }
